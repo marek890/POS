@@ -1,0 +1,5 @@
+/home/mkulla/POS/Cvicenie4/build/CMakeFiles/edit_cache.dir
+/home/mkulla/POS/Cvicenie4/build/CMakeFiles/rebuild_cache.dir
+/home/mkulla/POS/Cvicenie4/build/src/CMakeFiles/commandsExample.dir
+/home/mkulla/POS/Cvicenie4/build/src/CMakeFiles/edit_cache.dir
+/home/mkulla/POS/Cvicenie4/build/src/CMakeFiles/rebuild_cache.dir

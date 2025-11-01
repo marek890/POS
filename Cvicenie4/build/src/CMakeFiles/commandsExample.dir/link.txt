@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/commandsExample.dir/link.d CMakeFiles/commandsExample.dir/main.c.o CMakeFiles/commandsExample.dir/command.c.o CMakeFiles/commandsExample.dir/commandsQueue.c.o -o commandsExample
