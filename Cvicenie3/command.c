@@ -30,8 +30,9 @@ _Bool command_try_append_string(command_t * this, const char * string, _Bool las
 		return 0;
 	}
 	
-	if (strlen(string) + strlen(this->string) > COMMAND_MAX_LENGTH) {
+	if (strlen(string) + strlen(this->string) + 1 > COMMAND_MAX_LENGTH) {
 		fprintf(stderr, "String is too long\n");
+		return 0;
 	}
 
 	strcat(this->string, string);
