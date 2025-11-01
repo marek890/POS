@@ -50,7 +50,8 @@ void command_get_command_copy(const command_t * this, command_t * copy) {
 	memcpy(copy, this, sizeof(command_t));
 }
 
-void command_print(const command_t * this) {
+void command_print(const command_t * this, FILE* stream) {
 // Funkcia vypíše textovú reprezentáciu príkazu
-	printf("%s", this->string);
+	if (stream != NULL)
+		fprintf(stream, "%s", this->string);
 }
