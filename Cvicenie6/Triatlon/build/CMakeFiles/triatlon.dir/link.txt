@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/triatlon.dir/link.d CMakeFiles/triatlon.dir/main.c.o -o triatlon

@@ -1,0 +1,3 @@
+/home/mkulla/POS/Cvicenie6/Triatlon/build/CMakeFiles/triatlon.dir
+/home/mkulla/POS/Cvicenie6/Triatlon/build/CMakeFiles/edit_cache.dir
+/home/mkulla/POS/Cvicenie6/Triatlon/build/CMakeFiles/rebuild_cache.dir

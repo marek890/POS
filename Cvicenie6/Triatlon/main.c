@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 #define MAX_THREADS 4
-#define MAX_SIMULATIONS 25
+#define MAX_SIMULATIONS 25000
 
 typedef struct TriatlonTimes {
 	int swimming;
@@ -25,14 +25,15 @@ int compare_times(const void* a, const void* b) {
 void* simulate_triatlon(void* arg) {
 	triatlon_times_t* times = (triatlon_times_t*) arg;
 	triatlon_times_t t;
-	
+	//unsigned int seed = (unsigned int) time(NULL) ^ pthread_self();
+
 	for (int i = 0; i < MAX_SIMULATIONS; i++) {
 		t.swimming = 12;
-		if (rand() % 101 < 25) {
+		if (/*rand_r(&seed)*/ rand() % 101 < 25) {
 			t.swimming = t.swimming + 3;
 		}
 		t.cycling = 40;
-		t.running = (rand() % 11) + 20;
+		t.running = (/*rand_r(&seed)*/ rand() % 11) + 20;
 		t.total = t.swimming + t.cycling + t.running;
 
 		times[i] = t;
