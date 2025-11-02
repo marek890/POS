@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/suitcases.dir/link.d CMakeFiles/suitcases.dir/main.c.o -o suitcases

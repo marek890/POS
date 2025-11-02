@@ -8,7 +8,8 @@
 #define MAX_ATTEMPTS 10000
 #define DIGITS 4
 
-void try_to_open_suitcase(const char line[]) {
+void* try_to_open_suitcase(void* arg) {
+	char* line = (char*)arg;
 	int attempts = 0;
 	char code[8];
 	memset(code, 0, sizeof(code));
@@ -31,7 +32,7 @@ void try_to_open_suitcase(const char line[]) {
 		printf("Worker has successfully opened the suitcase with code: %s on the %d attempt\n", line, attempts);
 	}
 
-	//pthread_exit(NULL);
+	pthread_exit(NULL);
 }
 
 int main(int argc, char** argv) {
@@ -39,16 +40,24 @@ int main(int argc, char** argv) {
 		fprintf(stderr, "Too many workers/suitcases\n");
 		return 1;
 	}
-	char line[9];
+	pthread_t threads[atoi(argv[1])];
+	char* codes[atoi(argv[1])];
 	srand(time(NULL));
 	
 	FILE* f = fopen(argv[2], "r");
 	for (int i = 0; i < atoi(argv[1]); i++) {
-		fgets(line, sizeof line, f);
-    	line[strcspn(line, "\n")] = '\0';
-		try_to_open_suitcase(line);
+		codes[i] = malloc(9);
+		fgets(codes[i], 9, f);
+    	codes[i][strcspn(codes[i], "\n")] = '\0';
+		pthread_create(&threads[i], NULL, try_to_open_suitcase, codes[i]);
 	}
 	fclose(f);
+	
+	for (int i = 0; i < atoi(argv[1]); i++) {
+		pthread_join(threads[i], NULL);
+		free(codes[i]);
+	}
+
 	return 0;
 }
 

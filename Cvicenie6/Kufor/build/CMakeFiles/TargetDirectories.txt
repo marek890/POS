@@ -1,0 +1,3 @@
+/home/mkulla/POS/Cvicenie6/Kufor/build/CMakeFiles/suitcases.dir
+/home/mkulla/POS/Cvicenie6/Kufor/build/CMakeFiles/edit_cache.dir
+/home/mkulla/POS/Cvicenie6/Kufor/build/CMakeFiles/rebuild_cache.dir
