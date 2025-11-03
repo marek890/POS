@@ -1,0 +1,3 @@
+/home/mkulla/POS/Cvicenie6/Vlaky/build/CMakeFiles/vlaky.dir
+/home/mkulla/POS/Cvicenie6/Vlaky/build/CMakeFiles/edit_cache.dir
+/home/mkulla/POS/Cvicenie6/Vlaky/build/CMakeFiles/rebuild_cache.dir
