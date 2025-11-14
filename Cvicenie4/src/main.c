@@ -25,20 +25,28 @@ static void generate_word(char * word, size_t length, _Bool useNumbers) {
 // Inak vygeneruj malé písmeno a vlož ho na danú pozíciu v reťazci
 	for (size_t i = 0; i < length; i++) {
 		if (useNumbers) {
-			word[i] = '0' + (rand() % 10);
+			if (i == 0 && length > 1) {
+				word[i] = '1' + (rand() % 9);
+			}
+			else {
+				word[i] = '0' + (rand() % 10);
+			}
 		}
 		else {
 			word[i] = 'a' + (rand() % 26);
 		}
 	}
-	word[length] = '\0';
+	word[length - 1] = '\0';
 }
 
 // Funkcia dostupná len v tomto súbore ktorá pridá náhodný reťazec danej dĺžky do príkazu, pričom je možné zvoliť, či sa jedná o reťazec tvorený malými písmenami alebo číselný reťazec
-static void append_random_string_to_command(command_t * command, size_t length, _BooluseNumbers, _Bool isLast) {
+static void append_random_string_to_command(command_t * command, size_t length, _Bool useNumbers, _Bool isLast) {
 // Vytvorenie pomocnej premennej typu reťazec s danou dĺžkou
 // Vygenerovanie príslušného reťazca
 // Pridanie reťazca na koniec príkazu, pričom sa použije buď oddeľovač alebo ukončovací znak,→
+	char string[length];
+	generate_word(&string, length, useNumbers);
+	command_try_append_string(command, &string, isLast);
 }
 // Funkcia dostupná len v tomto súbore na vygenerovanie náhodnej dĺžky číselného reťazca alebo textového reťazca tvoreného len malými písmenami,→
 #define TMP_NUMBER_MAX_CAPACITY 10
@@ -74,7 +82,10 @@ static void generate_command_type(possible_command_t type, command_t * command) 
 }
 int main(int argc, char ** argv) {
 // Program vyžaduje 2 argumenty: cesta k súboru a počet príkazov. Ak sa neuvedú, je potrebné skončiť program a vypísať na štandardný chybový výstup informáciu o použití programu
-
+	if (argc != 2) {
+		fprintf(stderr, "Nebol zadany spravny pocet argumentov, potrebny pocet je 2");
+		return 1;
+	}
 // Získanie hodnoty oddelovača najskôr z prostredia a ak nie, tak potom z makra
 	char * delimiter;
 	if (!get_env_value("DELIMITER", &delimiter)) {
@@ -86,12 +97,27 @@ int main(int argc, char ** argv) {
 		endCharacter = COMMAND_END_CHARACTER;
 	}
 	srand(time(NULL));
-	char * fileName; // Sem vložte názov súboru zadaný ako argument
-// Získanie počtu vygenerovaných príkazov z argumentu
+	char * fileName = argv[1]; // Sem vložte názov súboru zadaný ako argument
+	int numOfCommands = argv[2]; // Získanie počtu vygenerovaných príkazov z argumentu
 // Otvorenie súboru s názvom uloženým v premennej fileName pre zápis, pričom ak sa súbor nepodarí otvoriť, je potrebné vypísať chybu a skončiť program chybovou hodnotou,→
 // Prvé dva riadky súboru obsahujú oddeľovač a ukončovací znak pre vygenerované príkazy
 // Vygenerujte zadaný počet príkazov, pričom použite funkciu generate_command_type a command_print,→
 // Po skončení zatvorte súbor
+	FILE* f;
+	if (fopen(fileName, "w") == NULL) {
+		fprintf(stderr, "Nepodarilo sa otvorit subor");
+		return 1;
+	}
+
+	fprintf(f, delimiter);
+	fprintf(f, endCharacter);
+	for (size_t = 0; i < numOfCommands; i++) {
+		command_t command;
+		generate_command_type(i, &command);
+		command_print(&command, f)
+	}
+	fclose(f);
+
 	char tmpString[6 + strlen(fileName)];
 	strcpy(tmpString, "stat ");
 	strcat(tmpString, fileName);
@@ -104,5 +130,10 @@ int main(int argc, char ** argv) {
 // V cykle najskôr získajte z prvých dvoch riadkov hodnoty oddeľovača a ukončovacieho znaku a následne všetkých príkazov, pričom ich postupne vkladajte do frontu,→
 // Po vložení vypíšte obsah frontu príkazov a následne ho aj vymažte
 // Pred skončením zistite od používateľa, či chce odstrániť súbor a ak by o to mal záujem, tak ho odstránňte pomocou funkcie remove,→
+	if (fopen(fileName, "r") == NULL) {
+		fprintf(stderr, "Nepodarilo sa otvorit subor");
+		return 1;
+	}
+
 	return 0;
 }
