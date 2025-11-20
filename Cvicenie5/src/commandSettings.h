@@ -1,0 +1,7 @@
+#ifndef COMMAND_SETTINGS_H
+#define COMMAND_SETTINGS_H
+
+#define COMMAND_DELIMITER "|"
+#define COMMAND_END_CHARACTER ";"
+
+#endif

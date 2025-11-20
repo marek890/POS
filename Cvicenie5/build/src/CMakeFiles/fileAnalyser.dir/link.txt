@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/fileAnalyser.dir/link.d CMakeFiles/fileAnalyser.dir/fileAnalyser.c.o CMakeFiles/fileAnalyser.dir/command.c.o CMakeFiles/fileAnalyser.dir/commandsGenerator.c.o -o fileAnalyser
