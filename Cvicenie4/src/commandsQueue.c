@@ -58,7 +58,7 @@ void commands_queue_print(const commands_queue_t * this) {
 	size_t index = this->outIndex;
 
 	for (size_t i = 0; i < this->size; i++) {
-		command_print(&this->commands[index]);
+		command_print(&this->commands[index], stdout);
 		index = (index + 1) % MAX_COMMANDS_COUNT;
 		printf("\n");
 	}

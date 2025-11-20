@@ -53,5 +53,5 @@ void command_get_command_copy(const command_t * this, command_t * copy) {
 void command_print(const command_t * this, FILE* stream) {
 // Funkcia vypíše textovú reprezentáciu príkazu
 	if (stream != NULL)
-		fprintf(stream, "%s", this->string);
+		fprintf(stream, "%s\n", this->string);
 }

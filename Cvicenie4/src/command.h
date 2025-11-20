@@ -1,6 +1,8 @@
+#include <stdio.h>
+
 #ifndef COMMAND_H
 #define COMMAND_H
-#include <stdio.h>
+
 #define COMMAND_MAX_LENGTH 101
 #define SEPARATOR_MAX_LENGTH 2
 #define DELIMITER_MAX_LENGTH 2
@@ -20,4 +22,4 @@ _Bool command_try_append_string(command_t * this, const char * string, _Bool las
 void command_get_command_copy(const command_t * this, command_t * copy);
 void command_print(const command_t * this, FILE* stream);
 
-#endif //COMMAND_:H
+#endif //COMMAND_H

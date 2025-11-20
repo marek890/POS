@@ -3,6 +3,7 @@
 #include "command.h"
 #include <stddef.h>
 #define MAX_COMMANDS_COUNT 10
+
 typedef struct CommandsQueue {
 // Fixné pole príkazov
 // Index, na ktorom sa bude vkladať
